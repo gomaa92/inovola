@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Inovola</string>
+    <string name="details">Details-></string>
+    <string name="price">Price: </string>
+    <string name="error_title">Error</string>
+    <string name="error_desc">An Error occurred, please try again.</string>
+</resources>

@@ -1,0 +1,108 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk 31
+    ndkVersion '24.0.8215888'
+    defaultConfig {
+        applicationId "com.gomaa.inovola"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    configurations.all {
+        resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.18.1'
+        }
+    }
+}
+
+dependencies {
+
+    //Kotlin STD Lib
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //Core Ktx
+    implementation "androidx.core:core-ktx:$core_ktx"
+    //AppCompat
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    //Material
+    implementation "com.google.android.material:material:$material"
+    //Constraint Layout
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    //Legacy Support
+    implementation "androidx.legacy:legacy-support-v4:$legacy_support"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    //Hilt dependencies
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    //Gson
+    implementation "com.google.code.gson:gson:$gson"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_converter"
+    //Navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    //Espresso, Junit,mockito
+    androidTestImplementation "androidx.test:runner:$androidx_test_runner"
+    androidTestImplementation "androidx.test:rules:$androidx_test_runner"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    testImplementation "org.mockito:mockito-core:$mockito_test"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_test"
+    // For instrumented tests using hilt.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin using hilt.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
+
+}

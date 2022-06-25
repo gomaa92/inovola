@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/writersFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.gomaa.inovola.features.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/writersFragment"
+        android:name="com.gomaa.inovola.features.list_writer.presentation.writers.view.fragment.WriterListFragment"
+        tools:layout="@layout/writers_fragment" />
+    <fragment
+        android:id="@+id/writerDetailsFragment"
+        android:name="com.gomaa.inovola.features.writer_details.view.WriterDetailsFragment"
+        tools:layout="@layout/writers_fragment" >
+        <argument android:name="writer_details"
+            app:nullable="false"
+            app:argType="com.gomaa.inovola.features.list_writer.data.model.ResultsEntity"/>
+    </fragment>
+
+</navigation>
